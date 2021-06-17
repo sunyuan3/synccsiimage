@@ -28,16 +28,15 @@ GIT_SHA=`git rev-parse --short HEAD || echo "HEAD"`
 COMM_NUM=`git describe --tag --long | awk -F '-' '{print $2}'`
 version=$version.47-$GIT_SHA-aliyun
 
-CGO_ENABLED=0 go build -ldflags "-X main.BRANCH='$branch' -X main.VERSION='$version' -X main.BUILDTIME='$buildTime'" -o plugin.csi.alibabacloud.com
+#CGO_ENABLED=0 go build -ldflags "-X main.BRANCH='$branch' -X main.VERSION='$version' -X main.BUILDTIME='$buildTime'" -o plugin.csi.alibabacloud.com
 
-cd ${GOPATH}/src/github.com/kubernetes-sigs/alibaba-cloud-csi-driver/build/ack/
-CGO_ENABLED=0 go build csiplugin-connector.go
+#cd ${GOPATH}/src/github.com/kubernetes-sigs/alibaba-cloud-csi-driver/build/ack/
+#CGO_ENABLED=0 go build csiplugin-connector.go
 
-mv ${GOPATH}/src/github.com/kubernetes-sigs/alibaba-cloud-csi-driver/plugin.csi.alibabacloud.com ./
+#mv ${GOPATH}/src/github.com/kubernetes-sigs/alibaba-cloud-csi-driver/plugin.csi.alibabacloud.com ./
 #docker login -u ${ACS_BUILD_ACCOUNT} -p ${ACS_BUILD_PWD} registry.cn-hangzhou.aliyuncs.com
-rm -rf Dockerfile
-wget https://raw.githubusercontent.com/sunyuan3/synccsiimage/main/Dockerfile
-docker build -t=registry.cn-hongkong.aliyuncs.com/sunyuan3/csi-plugin:$version ./
+wget https://raw.githubusercontent.com/sunyuan3/synccsiimage/main/Dockerfile -O Dockerfile-arm64
+docker build -t=registry.cn-hongkong.aliyuncs.com/sunyuan3/csi-plugin:$version -f Dockerfile-arm64 ./
 docker push registry.cn-hongkong.aliyuncs.com/sunyuan3/csi-plugin:$version
 
 echo "push image finished..."
