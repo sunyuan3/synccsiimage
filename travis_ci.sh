@@ -5,17 +5,17 @@ export PATH=$PATH:/opt/taobao/java/bin:/sbin:/usr/local/sbin:/usr/local/bin:/usr
 
 docker login --username=pleasuresun@sina.com -p "$DOCKER_PASSWORD"  registry.cn-hongkong.aliyuncs.com
 
-mkdir -p /home/regressionTest/go/src/github.com/kubernetes-sigs
-cd /home/regressionTest/go/src/github.com/kubernetes-sigs 
+mkdir -p ~/go/src/github.com/kubernetes-sigs
+cd ~/go/src/github.com/kubernetes-sigs 
 git clone https://github.com/kubernetes-sigs/alibaba-cloud-csi-driver.git
-cd /home/regressionTest/go/src/github.com/kubernetes-sigs/alibaba-cloud-csi-driver
+cd ~/go/src/github.com/kubernetes-sigs/alibaba-cloud-csi-driver
 
 cp build/oss/csiplugin-connector.go build/ack/csiplugin-connector.go
 cp build/oss/csiplugin-connector.service build/ack/csiplugin-connector.service
 cp build/oss/ossfs_1.80.6_centos7.0_x86_64.rpm build/ack/ossfs_1.80.6_centos7.0_x86_64.rpm
 cp build/oss/nsenter build/ack/nsenter
 
-export GOPATH=/home/regressionTest/go
+export GOPATH=~/go
 export GOARCH="arm64"
 export GOOS="linux"
 
