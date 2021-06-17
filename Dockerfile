@@ -4,7 +4,7 @@ ADD . /go/src/github.com/kubernetes-sigs/alibaba-cloud-csi-driver/
 WORKDIR /go/src/github.com/kubernetes-sigs/alibaba-cloud-csi-driver
 RUN ARCH=arm64 GOOS=linux CGO_ENABLED=0 go build -ldflags "-X main._BRANCH_='v1.0.0' -X main._VERSION_='v1.14.5' -X main._BUILDTIME_=`date '+%Y-%m-%d-%H:%M:%S'`" -o plugin.csi.alibabacloud.com && ARCH=arm64 GOOS=linux CGO_ENABLED=0 go build ./build/oss/csiplugin-connector.go
 
-FROM reg.docker.alibaba-inc.com/cos/centos:arm_64
+FROM arm64v8/centos:centos7
 LABEL maintainers="Alibaba Cloud Authors" description="Alibaba Cloud CSI Plugin"
 RUN yum install -y ca-certificates file tzdata nfs-utils xfsprogs e4fsprogs pciutils
 ARG ossfsVer=1.80.6.ack.1
