@@ -1,0 +1,7 @@
+arch: arm64
+language: go
+go:
+  - 1.16.5
+services:
+  - docker
+script: ./travis_ci.sh 
