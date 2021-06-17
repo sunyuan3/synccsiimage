@@ -35,6 +35,8 @@ CGO_ENABLED=0 go build csiplugin-connector.go
 
 mv ${GOPATH}/src/github.com/kubernetes-sigs/alibaba-cloud-csi-driver/plugin.csi.alibabacloud.com ./
 #docker login -u ${ACS_BUILD_ACCOUNT} -p ${ACS_BUILD_PWD} registry.cn-hangzhou.aliyuncs.com
+rm -rf Dockerfile
+wget https://raw.githubusercontent.com/sunyuan3/synccsiimage/main/Dockerfile
 docker build -t=registry.cn-hongkong.aliyuncs.com/sunyuan3/csi-plugin:$version ./
 docker push registry.cn-hongkong.aliyuncs.com/sunyuan3/csi-plugin:$version
 
